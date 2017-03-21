@@ -37,6 +37,8 @@ The layout is performed with SnapKit, which programatically creates all autolayo
 
 All Modules are tested using the XCTest framework. Mocks are available for most of the protocols used by the application.
 
+Basic UI Automation testing using XCUITest is provided for the search and detail views.
+
 ## Optimizations
 While scrolling images are not loaded to preserve scroll performance. Image loads are initiated once the user stops scrolling.
 
