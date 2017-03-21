@@ -1,0 +1,6 @@
+framework module Pods_OLX {
+  umbrella header "Pods-OLX-umbrella.h"
+
+  export *
+  module * { export * }
+}

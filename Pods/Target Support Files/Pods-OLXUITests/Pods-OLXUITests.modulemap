@@ -1,0 +1,6 @@
+framework module Pods_OLXUITests {
+  umbrella header "Pods-OLXUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

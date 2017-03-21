@@ -1,0 +1,14 @@
+ /*
+  Localizable.strings
+  OLX
+
+  Created by Jake Enzien on 3/19/17.
+  Copyright © 2017 Jacob Enzien. All rights reserved.
+*/
+
+"moreButtonTitle" = "More";
+"lessButtonTitle" = "Less";
+"results" = "Results";
+"noResultsError" = "No results found. Please try again.";
+"noNetworkError" = "No network connection. Please try again.";
+"tryAgain" = "Try Again";
