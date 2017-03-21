@@ -42,8 +42,18 @@ final class DetailsViewModel: ViewModel<DetailsViewControllable>, DetailsViewabl
         viewController.imageURL = URL(string: item.fullImage)
         viewController.titleText = item.title
         viewController.priceText = item.price?.displayPrice
-        viewController.locationText = item.displayLocation
-        viewController.descriptionText = item.description
+        if let neighborhood = item.neighborhood, neighborhood != "" {
+            viewController.locationText = "\(item.displayLocation), \(neighborhood)"
+        } else {
+            viewController.locationText = item.displayLocation
+        }
+        
+        if item.description == "" {
+            viewController.descriptionText = "N/A"
+        } else {
+            viewController.descriptionText = item.description
+        }
+        
         viewController.optionalFeatures = item.optionals?.reduce([String: String](), { (result, optionalModel) in
             if optionalModel.label == "" || optionalModel.value == "" {
                 return result

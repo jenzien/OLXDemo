@@ -12,6 +12,7 @@ import Freddy
 struct ItemModel: JSONDecodable {
     let description: String
     let displayLocation: String
+    let neighborhood: String?
     let mediumImage: String
     let fullImage: String
     let thumbnail: String
@@ -23,6 +24,7 @@ struct ItemModel: JSONDecodable {
     
     init(description: String,
          displayLocation: String,
+         neighborhood: String?,
          mediumImage: String,
          fullImage: String,
          thumbnail: String,
@@ -33,6 +35,7 @@ struct ItemModel: JSONDecodable {
          optionals: [OptionalModel]?) {
         self.description = description
         self.displayLocation = displayLocation
+        self.neighborhood = neighborhood
         self.mediumImage = mediumImage
         self.fullImage = fullImage
         self.thumbnail = thumbnail
@@ -46,11 +49,12 @@ struct ItemModel: JSONDecodable {
     init(json: JSON) throws {
         description = try json.getString(at: "description", or: "")
         displayLocation = try json.getString(at: "displayLocation", or: "")
+        neighborhood = try json.getString(at: "neighborhood", alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
         mediumImage = try json.getString(at: "mediumImage", or: "")
         fullImage = try json.getString(at: "fullImage", or: "")
         thumbnail = try json.getString(at: "thumbnail", or: "")
         imageWidth = try json.getInt(at: "imageWidth", alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
-        imageHeight = try json.getInt(at: "imageHeight", alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]    )
+        imageHeight = try json.getInt(at: "imageHeight", alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
         title = try json.getString(at: "title", or: "")
         
         do {

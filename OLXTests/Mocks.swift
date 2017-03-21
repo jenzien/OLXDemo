@@ -266,6 +266,7 @@ class SearchViewModelListenerMock: SearchViewModelListener {
     
     var wantDetailViewCallCount = 0
     var wantSearchResultsViewCallCount = 0
+    var wantToDetachCallCount = 0
     
     func wantDetailView(forItem item: ItemModel) {
         wantDetailViewCallCount += 1
@@ -273,6 +274,10 @@ class SearchViewModelListenerMock: SearchViewModelListener {
     
     func wantSearchResultsView(forSearchTerm search: String) {
         wantSearchResultsViewCallCount += 1
+    }
+    
+    func wantToDetach() {
+        wantToDetachCallCount += 1
     }
 }
 
@@ -282,6 +287,7 @@ class SearchCollectionViewControllerListenerMock: SearchCollectionViewController
     var scrollViewDidScrollToBottomCallCount = 0
     var didSelectItemCallCount = 0
     var refreshDataCallCount = 0
+    var viewWillDisappearCallCount = 0
     
     func searchBarDidSearch(forText search: String) {
         searchBarDidSearchCallCount += 1
@@ -297,6 +303,10 @@ class SearchCollectionViewControllerListenerMock: SearchCollectionViewController
     
     func refreshData() {
         refreshDataCallCount += 1
+    }
+    
+    func viewWillDisappear() {
+        viewWillDisappearCallCount += 1
     }
 }
 

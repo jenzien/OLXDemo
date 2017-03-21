@@ -216,7 +216,7 @@ final class SearchCollectionViewController: CollectionViewController, SearchColl
             let item = items[indexPath.row]
             cell.title.text = item.title
             cell.price.text = item.price?.displayPrice
-            cell.image.imageURL = URL(string: item.fullImage)
+            cell.image.imageURL = URL(string: item.mediumImage)
             cell.imageWidth = item.imageWidth
             cell.imageHeight = item.imageHeight
             cell.resize(defaultWidthHeight: cellWidth)

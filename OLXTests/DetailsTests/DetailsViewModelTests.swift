@@ -26,6 +26,7 @@ class DetailsViewModelTests: XCTestCase {
         let imageURL = "https://porsche.com"
         let price = "$1"
         let location = "Nurburgring"
+        let neighborhood = "Track"
         let description = "Fastest best hybrid"
         let optionalLabel = "Year"
         let optionalValue = "2015"
@@ -34,6 +35,7 @@ class DetailsViewModelTests: XCTestCase {
         
         let itemModel = ItemModel(description: description,
                                   displayLocation: location,
+                                  neighborhood: neighborhood,
                                   mediumImage: "",
                                   fullImage: imageURL,
                                   thumbnail: "",
@@ -50,7 +52,7 @@ class DetailsViewModelTests: XCTestCase {
         XCTAssertEqual(detailsViewControllerMock.imageURL?.absoluteString, imageURL)
         XCTAssertEqual(detailsViewControllerMock.titleText, title)
         XCTAssertEqual(detailsViewControllerMock.priceText, price)
-        XCTAssertEqual(detailsViewControllerMock.locationText, location)
+        XCTAssertEqual(detailsViewControllerMock.locationText, "\(location), \(neighborhood)")
         XCTAssertEqual(detailsViewControllerMock.descriptionText, description)
         XCTAssertEqual(detailsViewControllerMock.optionalFeatures!, [optionalLabel: optionalValue])
     }

@@ -23,6 +23,7 @@ class DetailsRouterTests: XCTestCase {
         detailsViewModelMock.presentItemCallCount = 0
         let itemModel = ItemModel(description: "",
                                   displayLocation: "",
+                                  neighborhood: nil,
                                   mediumImage: "",
                                   fullImage: "",
                                   thumbnail: "",

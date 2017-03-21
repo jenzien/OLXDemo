@@ -35,8 +35,12 @@ final class AlamofireEngine: NetworkEngine {
                 return
             }
             
-            let parseResponse: (model: Model?, error: Error?) = self.parseResponse(response: response)
-            completion(parseResponse.model, parseResponse.error)
+            DispatchQueue.global(qos: .default).async {
+                let parseResponse: (model: Model?, error: Error?) = self.parseResponse(response: response)
+                DispatchQueue.main.async {
+                    completion(parseResponse.model, parseResponse.error)
+                }
+            }
         }
     }
     

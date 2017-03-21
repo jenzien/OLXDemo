@@ -46,6 +46,7 @@ class SearchViewControllerTests: XCTestCase {
         let priceModel = PriceModel(amount: 1, displayPrice: price)
         let itemModel = ItemModel(description: "",
                                   displayLocation: "",
+                                  neighborhood: nil,
                                   mediumImage: "",
                                   fullImage: imageURL,
                                   thumbnail: "",
@@ -75,6 +76,7 @@ class SearchViewControllerTests: XCTestCase {
         let priceModel = PriceModel(amount: 1, displayPrice: price)
         let itemModel = ItemModel(description: "",
                                   displayLocation: "",
+                                  neighborhood: nil,
                                   mediumImage: "",
                                   fullImage: imageURL,
                                   thumbnail: "",

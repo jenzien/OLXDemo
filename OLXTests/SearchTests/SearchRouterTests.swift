@@ -60,6 +60,7 @@ final class SearchRouterTests: XCTestCase {
         
         let itemModel = ItemModel(description: "",
                                   displayLocation: "",
+                                  neighborhood: nil,
                                   mediumImage: "",
                                   fullImage: "",
                                   thumbnail: "",

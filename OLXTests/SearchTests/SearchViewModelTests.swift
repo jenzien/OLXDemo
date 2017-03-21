@@ -17,6 +17,7 @@ class SearchViewModelTests: XCTestCase {
     let searchViewModelListenerMock = SearchViewModelListenerMock()
     let itemModel = ItemModel(description: "",
                               displayLocation: "",
+                              neighborhood: nil,
                               mediumImage: "",
                               fullImage: "",
                               thumbnail: "",
@@ -151,5 +152,16 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(olxServiceMock.getItemsCallCount, 1)
         XCTAssertEqual(searchViewControllerMock.hideErrorViewCallCount, 1)
         XCTAssertEqual(searchViewControllerMock.showErrorViewCallCount, 0)
+    }
+    
+    func test_viewWillDisappear() {
+        //Given
+        searchViewModelListenerMock.wantToDetachCallCount = 0
+        
+        //When
+        searchViewModel.viewWillDisappear()
+        
+        //Verify
+        XCTAssertEqual(searchViewModelListenerMock.wantToDetachCallCount, 1)
     }
 }

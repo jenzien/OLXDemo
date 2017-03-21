@@ -36,9 +36,9 @@ final class DetailsViewController: ViewController, DetailsViewControllable {
     private let titleLabel = Label(theme: Themes.Dark, textStyle: .Title)
     private let priceLabel = Label(theme: Themes.Dark, textStyle: .TitleBold)
     private let image = ImageView()
-    private let descriptionLabel = Label(textStyle: .Heading)
+    private let descriptionLabel = Label(theme: Themes.Dark, textStyle: .Subtitle)
     private let overlayView = View(theme: Themes.Dark)
-    private let imageZoomView = ScrollView(theme: Themes.Dark)
+    private let imageViewContainer = View(theme: Themes.Dark)
     
     private let infoView = ScrollView(theme: Themes.Dark)
     private let locationPin = ImageView(imageName: "LocationPin")
@@ -91,7 +91,7 @@ final class DetailsViewController: ViewController, DetailsViewControllable {
         addSubviews()
         makeConstraints()
         
-        setupZoomView()
+        setupImageViewContainer()
         setupOverlayView()
         
         edgesForExtendedLayout = []
@@ -167,12 +167,12 @@ final class DetailsViewController: ViewController, DetailsViewControllable {
         
         overlayView.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.5)
         
-        view.addSubview(imageZoomView)
+        view.addSubview(imageViewContainer)
         view.addSubview(overlayView)
     }
     
     private func makeConstraints() {
-        imageZoomView.snp.makeConstraints { (make) in
+        imageViewContainer.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
         
@@ -183,8 +183,8 @@ final class DetailsViewController: ViewController, DetailsViewControllable {
         
     }
     
-    private func setupZoomView() {
-        imageZoomView.addSubview(image)
+    private func setupImageViewContainer() {
+        imageViewContainer.addSubview(image)
         
         image.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
@@ -265,7 +265,26 @@ final class DetailsViewController: ViewController, DetailsViewControllable {
             return
         }
         
-        var previousNameView: UIView = infoView
+        infoView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(Constants.verticalPadding)
+            make.leading.equalTo(Constants.horizontalPadding)
+            make.trailing.equalTo(-Constants.horizontalPadding)
+            make.width.equalToSuperview().offset(-Constants.horizontalPadding * 2)
+        }
+        
+        let line = View()
+        line.backgroundColor = UIColor.white
+        infoView.addSubview(line)
+        line.snp.makeConstraints { (make) in
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(Constants.verticalPadding)
+            make.leading.equalTo(Constants.horizontalPadding)
+            make.trailing.equalTo(-Constants.horizontalPadding)
+            make.width.equalToSuperview().offset(-Constants.horizontalPadding * 2)
+            make.height.equalTo(1)
+        }
+        
+        var previousNameView: UIView = line
         var previousValueView: UIView? = nil
         
         for (name, value) in optionalFeatures {
@@ -288,7 +307,6 @@ final class DetailsViewController: ViewController, DetailsViewControllable {
                 if let previousValueView = previousValueView {
                     make.leading.equalTo(previousValueView.snp.leading)
                 }
-                make.trailing.equalTo(-Constants.horizontalPadding)
                 make.top.equalTo(previousNameView.snp.bottom).offset(Constants.verticalPadding)
                 make.bottom.equalTo(nameLabel.snp.bottom)
             })
