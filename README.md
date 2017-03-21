@@ -1,6 +1,9 @@
 # OLXDemo
 OLX iOS technical exercise
 
+## Instructions
+This project uses cocoapods. You may need to run pod install followed by pod update to run the project. Please open the workspace and not the project directly.
+
 ## UI/UX
 This application queries the public OLX api /items endpoint and displays the results in a collection view.
 
